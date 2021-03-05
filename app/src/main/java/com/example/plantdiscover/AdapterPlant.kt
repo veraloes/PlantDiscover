@@ -30,14 +30,8 @@ class AdapterPlant(private val plants: List<Data>) :
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//        var plantImage: ImageView
-//        var commonFamilyName: TextView
-//        var commonName: TextView
-//
-//        init {
             val plantImage:ImageView = itemView.findViewById(R.id.plant_image)
             val commonName:TextView = itemView.findViewById(R.id.common_name)
             val commonFamilyName:TextView = itemView.findViewById(R.id.common_family_name)
         }
-//    }
 }
