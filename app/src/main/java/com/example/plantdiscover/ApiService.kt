@@ -3,10 +3,18 @@ package com.example.plantdiscover
 import com.example.plantdiscover.model.Data
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Url
 
 
 interface ApiService {
-    @GET("/api/v1/plants?token=" + BuildConfig.YOUR_TREFLE_TOKEN)
 
-    fun filterOnASingleValue(): Call<List<Data>>
+
+
+    @GET ("comments?postId=1")
+
+    //            + BuildConfig.YOUR_TREFLE_TOKEN)
+
+    fun fetchAllUsers(): Call<List<User>>
+
+
 }
