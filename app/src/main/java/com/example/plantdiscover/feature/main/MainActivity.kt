@@ -1,14 +1,18 @@
-package com.example.plantdiscover
+package com.example.plantdiscover.feature.main
 
 import android.os.Bundle
-import android.util.Log.d
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.androidnetworking.interceptors.HttpLoggingInterceptor
+import com.example.plantdiscover.AdapterPlant
+import com.example.plantdiscover.ApiService
+import com.example.plantdiscover.R
 import com.example.plantdiscover.model.Data
-import okhttp3.OkHttpClient
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
@@ -17,30 +21,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        initializeRetrofit()
+    }
 
-        val httpClient = OkHttpClient.Builder()
-        httpClient.addInterceptor(logging)
-
-        val client = OkHttpClient.Builder().addInterceptor(logging).build()
-
+    private fun initializeRetrofit() {
         val apiBaseUrl = "https://trefle.io/api/v1/"
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(apiBaseUrl).client(client)
+            .baseUrl(apiBaseUrl)
             .addConverterFactory(GsonConverterFactory.create()).build()
 
         val api = retrofit.create(ApiService::class.java)
         api.fetchSpecies().enqueue(object : Callback<Data> {
 
             override fun onResponse(call: Call<Data>, response: Response<Data>) {
-                d("plant", "onResponse")
+                Log.d("plant", "onResponse")
                 showData(response.body()!!)
             }
 
             override fun onFailure(call: Call<Data>, t: Throwable) {
-                d("plant", "onFail")
+                Log.d("plant", "onFail")
             }
         })
     }

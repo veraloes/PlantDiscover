@@ -8,7 +8,4 @@ interface ApiService {
 
     @GET("species?token=" + BuildConfig.YOUR_TREFLE_TOKEN)
     fun fetchSpecies(): Call<Data>
-
-    @GET("https://trefle.io/api/v1/plants/search?token="+BuildConfig.YOUR_TREFLE_TOKEN+"&q="+ "coconut")
-    fun searchCoconut(): Call<Data>
 }

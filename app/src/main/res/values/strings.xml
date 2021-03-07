@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PlantDiscover</string>
+    <string name="plant_discover">Plant Discover</string>
+    <string name="search_for_a_plant">Search for a plant</string>
+    <string name="go_to_favourites_plants">Go to favourites plants</string>
+    <string name="plant_scientific_name">Plant scientific name</string>
+    <string name="plant_family_name">Plant family name</string>
+    <string name="common_name">Common Name</string>
 </resources>
