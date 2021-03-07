@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create()).build()
 
         val api = retrofit.create(ApiService::class.java)
-        api.fetchAllUsers().enqueue(object : Callback<Data> {
+        api.fetchSpecies().enqueue(object : Callback<Data> {
 
             override fun onResponse(call: Call<Data>, response: Response<Data>) {
                 d("plant", "onResponse")
@@ -51,6 +51,5 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = plants.data?.let { AdapterPlant(it) }
         }
-
     }
 }
