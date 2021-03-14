@@ -6,4 +6,5 @@
     <string name="plant_scientific_name">Plant scientific name</string>
     <string name="plant_family_name">Plant family name</string>
     <string name="common_name">Common Name</string>
+    <string name="search">search</string>
 </resources>

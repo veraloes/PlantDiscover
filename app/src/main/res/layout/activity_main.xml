@@ -8,21 +8,19 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".feature.main.MainActivity">
 
+<com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/app_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    android:fitsSystemWindows="true"
+    android:theme="@style/AppTheme.AppBarOverlay">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:isScrollContainer="true"
-        android:theme="@style/Theme.AppCompat.Light"
-        app:popupTheme="@style/Theme.AppCompat.Light">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:defaultQueryHint="Looking for a plant?">
-        </androidx.appcompat.widget.SearchView>
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+</com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myFirstRecyclerView"

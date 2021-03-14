@@ -1,7 +1,10 @@
 package com.example.plantdiscover.feature.main
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initializeRetrofit()
+        setupToolbar()
     }
 
     private fun initializeRetrofit() {
@@ -33,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
         val api = retrofit.create(ApiService::class.java)
         api.fetchSpecies().enqueue(object : Callback<Data> {
+//            api.searchPodcastByTerm("coconut").enqueue(object : Callback<Data> {
+
 
             override fun onResponse(call: Call<Data>, response: Response<Data>) {
                 Log.d("plant", "onResponse")
@@ -51,5 +57,23 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = plants.data?.let { AdapterPlant(it) }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_search, menu)
+        val searchMenuItem = menu.findItem(R.id.search_item)
+        val searchView = searchMenuItem?.actionView as androidx.appcompat.widget.SearchView
+        val searchManager = getSystemService(Context.SEARCH_SERVICE)
+                as SearchManager
+        searchView.setSearchableInfo(
+            searchManager.getSearchableInfo(componentName)
+        )
+        return true
+    }
+
+    private fun setupToolbar() {
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
     }
 }
