@@ -7,11 +7,11 @@ import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.plantdiscover.AdapterPlant
 import com.example.plantdiscover.ApiService
 import com.example.plantdiscover.R
 import com.example.plantdiscover.model.Data
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,10 +49,10 @@ class MainActivity : AppCompatActivity() {
                 Log.d("plant", "onFail")
             }
         })
+
     }
 
     private fun showData(plants: Data) {
-        val myFirstRecyclerView = findViewById<RecyclerView>(R.id.myFirstRecyclerView)
         myFirstRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = plants.data?.let { AdapterPlant(it) }
@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
     }
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Plant(
     @SerializedName("data")
-    val `data`: List<DataValue>,
+    val `data`: List<Data.DataValue>,
     @SerializedName("links")
     val links: LinksX,
     @SerializedName("meta")

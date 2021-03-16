@@ -5,8 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.plantdiscover.model.DataValue
+import com.example.plantdiscover.model.Data.DataValue
 import com.squareup.picasso.Picasso
 
 class AdapterPlant(private val plants: List<DataValue>) :
@@ -24,16 +25,33 @@ class AdapterPlant(private val plants: List<DataValue>) :
         holder.commonFamilyName.text = plant.familyCommonName
         holder.commonName.text = plant.commonName
         holder.scientificName.text = plant.scientificName
+        holder.itemView.tag = position
     }
 
     override fun getItemCount(): Int {
         return plants.size
     }
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
         val plantImage: ImageView = itemView.findViewById(R.id.plant_image)
         val commonName: TextView = itemView.findViewById(R.id.common_name)
         val commonFamilyName: TextView = itemView.findViewById(R.id.common_family_name)
         val scientificName: TextView = itemView.findViewById(R.id.scientific_name)
+
+        override fun onClick(v: View?) {
+            val position = v!!.tag as Int
+            if (v == itemView) {
+                Toast.makeText(
+                    v.context,
+                    "Clicked item number $position",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }
